@@ -17,3 +17,10 @@ export MAIL_USERNAME=*your-gmail-username*
 export MAIL_PASSWORD=*your-gmail-password*
 
 export FLASKY_ADMIN=admin@flasky.com
+
+### Create and run database migrations
+flask db init 
+
+flask db migrate -m'initial migration'
+
+flask db upgrade
