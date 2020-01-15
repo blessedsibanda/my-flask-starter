@@ -1,14 +1,19 @@
+from datetime import datetime
+
 from flask import Flask, request, render_template
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+moment = Moment(app)
+
 app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 
 @app.route('/')
 def index():
     ip_addr = request.remote_addr
-    return render_template('index.html', ip_addr=ip_addr)
+    return render_template('index.html', ip_addr=ip_addr, current_time=datetime.utcnow())
 
 @app.route('/user/<name>')
 def user(name):
