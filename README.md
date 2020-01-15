@@ -10,9 +10,10 @@ A Flask Starter Boilerplate
 ### Set environmental variables
 export FLASK_APP=flasky.py
 
-export FLASK_DEBUG=1
+export FLASK_ENV=development
 
 export MAIL_USERNAME=*your-gmail-username*
 
 export MAIL_PASSWORD=*your-gmail-password*
 
+export FLASKY_ADMIN=admin@flasky.com
