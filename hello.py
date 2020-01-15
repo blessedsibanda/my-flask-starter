@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, session, url_for, redirect
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
@@ -20,13 +20,11 @@ class NameForm(FlaskForm):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    ip_addr = request.remote_addr
-    name = None 
     form = NameForm()
     if form.validate_on_submit():
-        name = form.name.data 
-        form.name.data = ''
-    return render_template('index.html', ip_addr=ip_addr, current_time=datetime.utcnow(), form=form, name=name)
+        session['name'] = form.name.data 
+        return redirect(url_for('index'))
+    return render_template('index.html', form=form, name=session.get('name'), current_time=datetime.utcnow())
 
 @app.route('/user/<name>')
 def user(name):
